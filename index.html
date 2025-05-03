@@ -112,7 +112,7 @@ function stopTone(){if(osc){osc.stop();osc=null;}}
 function beep(char){const t=char==='.'?dotMs():dotMs()*3;startTone();setTimeout(stopTone,t);}
 
 // ---------- Converters ----------
-function textToMorse(txt){return txt.toUpperCase().split('').map(ch=>ch===' '? ' ': MORSE_TABLE[ch]||'').join('/').replace(/\/(?= )/g,'');}
+function textToMorse(txt){return txt.toUpperCase().split('').map(ch=>ch===' '? ' ': MORSE_TABLE[ch]||'').join('/').replace(/\/(?=\s)|(?<=\s)\//g,'');}
 function morseToText(morse){return morse.trim().split(' ').map(w=>w.split('/').filter(Boolean).map(s=>TEXT_TABLE[s]||'?').join('')).join(' ');}  
 
 // ---------- I/O Elements ----------
